@@ -6,10 +6,10 @@
 There are several important HTTP methods to be aware of (although there are many more):
 * OPTIONS - requests permitted communication options for a given URL or server. A client can specify a URL with this method, or an asterisk (*) to refer to the entire server.
 * GET - fetch a resource from the server
-* POST - create a new resource on the server
-* PUT - update an existing resource on the server *or* update the existing resource by providing the entire resource
-* PATCH - update a resource on the server by providing only the parts that need to be updated
 * DELETE - remove a resource from the server
+* POST - create a new resource on the server
+* PUT - update an existing resource on the server *or* create the non-existing resource **by providing the entire resource**
+* PATCH - update a resource on the server by providing only the parts that need to be updated
 
 ### A word on CORS
 Allows *Cross-Origin Resource Sharing* which basically allows for cross-domain requests from the frontend. By default the browsers don't allow this behavior unless the origin that we're targeting with our requests also allows it.
