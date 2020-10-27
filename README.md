@@ -8,6 +8,9 @@ https://docs.google.com/presentation/d/13AwPWN_mAhfXy-GEtpawGZ7kJkwpgjgqwdvVACLP
 "Yes, Please" slides (ES6+ features, Promises, async/await):  
 https://drive.google.com/file/d/1hjhz-gMAIGehgZBle5CpS8UqfKuHfnsx/view?usp=sharing
 
+"Dark Secrets of the Event Loop" by Dragan Gelevski and Wekoslav Stefanovski:  
+https://github.com/Drakso/DarkSecretsOfTheEventLoop
+
 ## Useful links
 
 Node.js Ultimate Beginner’s Guide in 7 Easy Steps  

@@ -108,6 +108,22 @@ And after requiring the module:
 ```javascript
 app.use([routerRootPath], router);
 ```
+## Response object methods
+Every request needs to be terminated at some point otherwise the client will be left hanging. The following methods are available on the `response` object can terminate the request:
+* `res.download(path, filename)` => Prompt a file to be downloaded.
+* `res.end()` => End the response process without any data.
+* `res.send(data)` => Send a response of various types.
+* `res.sendStatus(statusCode)` => Set the response status code and send its string representation as the response body.
+* `res.json(body)` => Send a JSON response.
+* `res.redirect([status,] path)` => Redirect a request.
+* `res.sendFile()` => Send a file as an octet stream.
+* `res.render()` => Render a view template.
+* `res.jsonp()` => Send a JSON response with JSONP support.
+
+More useful methods that can be called and chained to access or modify the request **before ending it**:
+* `res.get(headerName)` => get a specific header value
+* `res.set(headerName, headerValue)` => set a specific header value
+* `res.status(code)` => set a code of the response
 
 ## Middleware
 Middleware is a function that's granted access to the response, request and the the third, special object that represents the next middleware in the application.
@@ -137,7 +153,7 @@ If we create stack by using multiple sub-stacks like this:
 app.get('/someroute', [cb1, cb2, cb3]);
 app.get('/someroute', [cb4, cb5, cb6]);
 ```
-...and we want to "leave" the first stack while in the middleware function `cb2` we can simply call `next('route')`. That will signal our Express app to skip the execution of the current middleware stack and move to the next stack and start executing `cb4`.
+...and we want to "leave" the first stack while in the middleware function `cb2` we can simply call `next('route')`. That will signal our Express app to skip the execution of the current middleware stack and move to the next stack and start executing `cb4`. This will work **only in middleware functions that were loaded by using the app.METHOD() or router.METHOD()**.
 
 ### Router-level middleware
 Same as application-level middleware but all of the middlewares work on the level of the current router only.
@@ -189,20 +205,3 @@ app.use(function (err, req, res, next) {
 	res.status(500).send('Something broke!');
 })
 ```
-
-## Response object methods
-Every request needs to be terminated at some point otherwise the client will be left hanging. The following methods are available on the `response` object can terminate the request:
-* `res.download(path, filename)` => Prompt a file to be downloaded.
-* `res.end()` => End the response process without any data.
-* `res.send(data)` => Send a response of various types.
-* `res.sendStatus(statusCode)` => Set the response status code and send its string representation as the response body.
-* `res.json(body)` => Send a JSON response.
-* `res.redirect([status,] path)` => Redirect a request.
-* `res.sendFile()` => Send a file as an octet stream.
-* `res.render()` => Render a view template.
-* `res.jsonp()` => Send a JSON response with JSONP support.
-
-More useful methods that can be called and chained to access or modify the request **before ending it**:
-* `res.get(headerName)` => get a specific header value
-* `res.set(headerName, headerValue)` => set a specific header value
-* `res.status(code)` => set a code of the response
