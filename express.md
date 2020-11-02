@@ -175,9 +175,9 @@ There are a few built in middlewares for parsing/accessing the request body (and
 
 ## Special routing cases
 ### Static file serving
-Uses Express middleware:
+Uses Express static middleware in your app's main module like this:
 ```javascript
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 ```
 
 All the files in the `public` are then served as static files at the root-level path. E.g. if there's a file: `public/img/image.jpg` that file can be accessed with the following URL: `http://localhost:3000/img/image.jpg`.
@@ -186,7 +186,7 @@ You can set up multiple static folders. They will be prioritized in the same ord
 
 You can also specify a custom path to be used as a static path:
 ```javascript
-app.use('/static', express.static('public'))
+app.use('/static', express.static(__dirname + '/public'))
 ```
 ...and then access those files through an URL such as `http://localhost:3000/static/img/image.jpg`.
 
