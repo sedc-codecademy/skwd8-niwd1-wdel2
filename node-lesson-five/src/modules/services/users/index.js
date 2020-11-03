@@ -1,6 +1,7 @@
 const { DB } = require('../../database');
 const {usersCollection} = require('../../../constants');
 const { validateKeysExist } = require('../../helpers');
+const { ObjectID } = require('mongodb');
 
 const userRequiredKeys = ['firstName', 'lastName', 'email', 'password'];
 
@@ -14,8 +15,15 @@ class UsersService {
         await UsersService.collection.insertOne(user);
     }
 
-    async findByEmail(email) {}
-    async findById(email) {}
+    async findByEmail(email) {
+        return await UsersService.collection.findOne({email});
+    }
+
+    async findById(id) {
+        return await UsersService.collection.findOne({
+            _id: new ObjectID(id)
+        });
+    }
     async update(user) {}
 }
 

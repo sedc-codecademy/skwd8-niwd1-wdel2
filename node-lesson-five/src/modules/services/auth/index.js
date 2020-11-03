@@ -1,4 +1,6 @@
 const bcrypt = require('bcrypt');
+const JWT = require('jsonwebtoken');
+const config = require('../../../config');
 
 class AuthService {
     static async hashPassword(password) {
@@ -8,8 +10,15 @@ class AuthService {
         return await bcrypt.compare(password, hashedPassword);
     }
 
-    static async generateToken(user) {}
-    static async verifyTokenAndGetUserId(token) {}
+    static async generateToken(user) {
+        return JWT.sign({}, config.auth.secret, {
+            subject: `${user._id}`,
+            expiresIn: config.auth.jwtExpiresIn,
+        });
+    }
+    static async verifyTokenAndGetUserId(token) {
+        return JWT.verify(token, config.auth.secret);
+    }
 }
 
 module.exports = AuthService
