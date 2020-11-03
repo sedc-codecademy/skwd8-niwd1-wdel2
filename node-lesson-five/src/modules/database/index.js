@@ -1,0 +1,36 @@
+const config = require('../../config');
+const { MongoClient } = require('mongodb');
+const { usersCollection } = require('../../constants');
+
+const connectionString = `mongodb://${config.db.username}:${config.db.password}@localhost/${config.db.dbname}`;
+
+class Database {
+    async connect() {
+        const client = new MongoClient(connectionString, {
+            useUnifiedTopology: true,
+            authSource: config.db.dbname
+        });
+        this.connection = await client.connect();
+
+        // unique indexes
+        await this.DB
+            .collection(usersCollection)
+            .createIndex({email: 1}, {unique: true});
+    }
+
+    async disconnect() {
+        this.connection.close();
+    }
+
+    get DB () {
+        try {
+            return this.connection.db(config.db.dbname);
+        }
+        catch(e) {
+            console.error('Database unavailable:', e);
+            return null;
+        }
+    }
+}
+
+module.exports = new Database();
