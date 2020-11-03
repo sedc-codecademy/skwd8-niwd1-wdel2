@@ -1,0 +1,18 @@
+{
+  "name": "lesson-five",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/main.js",
+  "scripts": {
+    "serve": "nodemon ./src/main.js --config nodemon-config.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
