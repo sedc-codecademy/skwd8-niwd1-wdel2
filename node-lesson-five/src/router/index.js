@@ -4,6 +4,7 @@ const auth = require('./auth');
 
 const mainRouter = Router();
 
+mainRouter.use(express.json());
 mainRouter.use(auth.path, auth.router);
 
 module.exports = {

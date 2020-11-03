@@ -1,6 +1,5 @@
 const database = require('./modules/database');
 const config = require('./config');
-const router = require('./router');
 
 (async () => {
     console.info('Starting the app...');
@@ -10,6 +9,7 @@ const router = require('./router');
 
     console.info('Creating the express app...')
     const express = require('express');
+    const router = require('./router');
     const app = express();
     console.info('Registering the routes...')
     app.use(router.path, router.router);
