@@ -14,7 +14,7 @@
 const { ObjectID } = require("mongodb");
 const { validateKeysExist } = require("../../helpers");
 const { DB } = require('../../database');
-const {todosCollection} = require('../../../constants');
+const {todosCollection, sharingActions} = require('../../../constants');
 
 const todoRequiredKeys = ['owner', 'title', 'items', 'sharedWith', 'lastModified'];
 const todoItemRequiredKeys = ['done', 'text'];
@@ -65,8 +65,35 @@ class TodosService {
             $set: {...todo, lastModified: new Date() }
         });
     }
-    async updateField() {}
-    async share() {}
+
+    async updateField(ownerId, todoId, field, value) {
+        return await TodosService.collection.updateOne({
+            _id: new ObjectID(todoId),
+            owner: new ObjectID(ownerId)
+        }, {
+            $set: { [field]: value, lastModified: new Date() }
+        });
+    }
+
+    async share(ownerId, todoId, userId, action) {
+        let operator = '';
+        if (action === sharingActions.ADD) {
+            operator = '$push';
+        } else if (action === sharingActions.REMOVE) {
+            operator = '$pull';
+        }
+        else {
+            throw new Error('Unknown action');
+        }
+
+        return await TodosService.collection.updateOne({
+            _id: new ObjectID(todoId),
+            owner: new ObjectID(ownerId),
+        }, {
+            [operator]: { sharedWith: new ObjectID(userId) }
+        });
+    }
+
     async delete() {}
 
     async findById(ownerId, todoId) {
