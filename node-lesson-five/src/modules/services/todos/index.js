@@ -25,8 +25,11 @@ class TodosService {
         return DB.collection(todosCollection);
     }
 
-    validateTodoObject(todo) {
-        validateKeysExist(todoRequiredKeys, todo);
+    validateTodoObject(todo, existing = false) {
+        validateKeysExist([
+            ...(existing ? ['_id'] : []),
+            ...todoRequiredKeys
+        ], todo);
         for (const item of todo.items) {
             validateKeysExist(todoItemRequiredKeys, item);
         }
@@ -49,14 +52,40 @@ class TodosService {
         this.validateTodoObject(todoDoc);
         await TodosService.collection.insertOne(todoDoc);
     }
-    async update() {}
+    async update(ownerId, todo) {
+        this.validateTodoObject(todo, true);
+        const { _id } = todo;
+        delete todo._id;
+        delete todo.owner;
+
+        return await TodosService.collection.updateOne({
+            _id: new ObjectID(_id),
+            owner: new ObjectID(ownerId),
+        }, {
+            $set: {...todo, lastModified: new Date() }
+        });
+    }
     async updateField() {}
     async share() {}
     async delete() {}
 
-    async findById() {}
-    async findAllByUserId() {}
-    async findAllSharedWithUserId() {}
+    async findById(ownerId, todoId) {
+        return await TodosService.collection.findOne({
+            _id: new ObjectID(todoId),
+            owner: new ObjectID(ownerId),
+        });
+    }
+    async findAllByUserId(ownerId) {
+        return await TodosService.collection
+            .find({owner: new ObjectID(ownerId)})
+            .toArray();
+    }
+
+    async findAllSharedWithUserId(userId) {
+        return await TodosService.collection
+        .find({ sharedWith: { $in: [new ObjectID(userId)] } })
+        .toArray();
+    }
 }
 
 module.exports = new TodosService();
