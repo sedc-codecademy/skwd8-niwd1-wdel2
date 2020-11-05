@@ -2,7 +2,7 @@ const helpers = {};
 
 helpers.validateKeysExist = (keys = [], target) => {
     for (const key of keys) {
-        if (!target[key]) {
+        if (typeof target[key] === 'undefined' ) {
             throw `Validation error for key ${key}`;
         }
     }

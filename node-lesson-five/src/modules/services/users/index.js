@@ -24,7 +24,6 @@ class UsersService {
             _id: new ObjectID(id)
         });
     }
-    async update(user) {}
 }
 
 module.exports = new UsersService();
