@@ -7,7 +7,7 @@ const todosRouter = Router();
 todosRouter.use(authMiddleware);
 
 todosRouter.get('/', async function(req, res) {
-    console.info('User', res.user);
+    console.info('User', req.user);
     res.send('Data');
 });
 

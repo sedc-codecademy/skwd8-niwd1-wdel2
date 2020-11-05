@@ -13,8 +13,8 @@ module.exports = async function(req, res, next) {
         if (!authCookie) throw badCookieError;
         const userId = await AuthService.verifyTokenAndGetUserId(authCookie);
         if (!userId) throw tokenError;
-        res.user = await users.findById(userId);
-        if (!res.user) throw userNotFoundError;
+        req.user = await users.findById(userId);
+        if (!req.user) throw userNotFoundError;
         next();
     } catch (e) {
         res.status(401);
