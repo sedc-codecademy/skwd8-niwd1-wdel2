@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import { Counter } from './components/Counter';
+import { CustomButton } from './components/CustomButton';
 
 // extend the default Component class from React package
 // and export it
@@ -9,10 +11,6 @@ export class App extends Component {
 
     // set the initial state of the component
     this.state = {
-      person: {
-        firstName: 'John',
-        lastName: 'Doe',
-      },
       counter: 0,
     };
   }
@@ -22,16 +20,7 @@ export class App extends Component {
     this.setState({
       counter: this.state.counter + 1,
     });
-
-    // react cannot deep merge the state! DO NOT DO THIS
-    this.setState({
-      person: {
-        firstName: 'Jane'
-      }
-    });
   }
-
-  //boundButtonClickHandler = this.buttonClickHandler.bind(this);
 
   // called every time the state changes
   render() {
@@ -39,9 +28,12 @@ export class App extends Component {
     
     return (
       <div>
-        Counter value: { this.state.counter }
-        <button onClick={ () => this.buttonClickHandler() }>Increment</button>
-        <div> { `${this.state.person.firstName } ${this.state.person.lastName}` } </div>
+        <Counter counterValue={this.state.counter}/>
+        <CustomButton isClicked={() => this.buttonClickHandler()}>
+          <div>GO1!</div>
+          <div>GO2!</div>
+          <div>GO3!</div>
+        </CustomButton>
       </div>
     );
   }
