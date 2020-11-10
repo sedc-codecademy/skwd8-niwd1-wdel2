@@ -1,6 +1,6 @@
 const config = Object.freeze({
     app: {
-        port: 3000,
+        port: 5000,
     },
     db: {
         dbname: 'main',
