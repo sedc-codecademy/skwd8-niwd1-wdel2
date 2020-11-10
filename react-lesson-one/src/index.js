@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import the root component of our app
-import App from './App';
+import { App } from './App';
 
 // rendering the App componnent into DOM
 // rendered onto the element with id === root
