@@ -15,6 +15,16 @@ export class App extends Component {
     };
   }
 
+  // runs when the component is mounted
+  componentDidMount() {
+    console.log('App mounted');
+  }
+
+  // called after component is rerendered (updated)
+  componentDidUpdate() {
+    console.log('App updated');
+  }
+
   buttonClickHandler(){
     // you MUST use the setState to modify the state
     this.setState({
@@ -24,7 +34,7 @@ export class App extends Component {
 
   // called every time the state changes
   render() {
-    console.log('Component rerendering');
+    console.log('App rerendering');
     
     return (
       <div>
