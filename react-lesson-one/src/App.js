@@ -1,36 +1,17 @@
-import { useState, useEffect } from 'react';
 import { Counter } from './components/Counter';
 import { CustomButton } from './components/CustomButton';
+import { useCounter } from './hooks/useCounter';
 
 export function App() {
 
-  // NEVER CALL HOOKS CONDITIONALLY
-  // AND ALWAYS CALL THEM IN THE SAME PLACE
-  const [counterState, setCounterState] = useState({
-    counter: 0
-  });
-
-  const incrementCounter = () => {
-    setCounterState({
-      counter: counterState.counter + 1,
-    });
-  };
-
-  // just a simple demo of useEffect hook to replace componentDidMount
-  useEffect(() => {
-    console.log('Use effect hook ran:', counterState.counter);
-
-    return () => {
-      console.log('Use effect destroy.');
-    };
-  }, [counterState.counter]);
+  const { counter, decrementCounter } = useCounter();
 
   return (
     // fragment instead of wrapping in a div that we dont need
     <>
-      <Counter counterValue={counterState.counter}/>
+      <Counter counterValue={counter}/>
       <CustomButton
-        isClicked={incrementCounter}>
+        isClicked={decrementCounter}>
         Increment
       </CustomButton>
     </>
