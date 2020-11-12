@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function useCounter() {
+export function useCounter(step = 1) {
     // NEVER CALL HOOKS CONDITIONALLY
     // AND ALWAYS CALL THEM IN THE SAME PLACE
     const [counterState, setCounterState] = useState({
@@ -10,13 +10,13 @@ export function useCounter() {
 
     const incrementCounter = () => {
         setCounterState({
-        counter: counterState.counter + 1,
+        counter: counterState.counter + step,
         });
     };
 
     const decrementCounter = () => {
         setCounterState({
-            counter: counterState.counter - 1,
+            counter: counterState.counter - step,
         });
     };
 
