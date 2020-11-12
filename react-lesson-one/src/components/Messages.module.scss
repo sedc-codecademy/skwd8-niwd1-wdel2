@@ -1,0 +1,10 @@
+$warning-color: red;
+$normal-color: blue;
+
+.primary {
+    color: $normal-color;
+}
+
+.warning {
+    color: $warning-color;
+}

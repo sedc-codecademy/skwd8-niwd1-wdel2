@@ -13,9 +13,18 @@ export function App() {
   const divisibleByFifteen = (counter % 15) === 0;
   const divisibleByTwenty = (counter % 20) === 0;
 
-  if (divisibleByTen) messageStrings.push('Counter is divisible by 10.');
-  if (divisibleByFifteen) messageStrings.push('Counter is divisible by 15.');
-  if (divisibleByTwenty) messageStrings.push('Counter is divisible by 20.');
+  if (divisibleByTen) messageStrings.push({
+    text: 'Counter is divisible by 10.',
+    isWarning: false,
+  });
+  if (divisibleByFifteen) messageStrings.push({
+    text: 'Counter is divisible by 15.',
+    isWarning: true,
+  });
+  if (divisibleByTwenty) messageStrings.push({
+    text: 'Counter is divisible by 20.',
+    isWarning: false,
+  });
 
 
   return (

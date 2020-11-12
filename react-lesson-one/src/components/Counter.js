@@ -1,4 +1,4 @@
-import styles from './Counter.module.css';
+import styles from './Counter.module.scss';
 
 export function Counter(props) {
     return (
