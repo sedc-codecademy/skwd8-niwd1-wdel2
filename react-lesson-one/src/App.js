@@ -16,8 +16,16 @@ export function App() {
   if (divisibleByFifteen) messages.push('Counter is divisible by 15.');
   if (divisibleByTwenty) messages.push('Counter is divisible by 20.');
 
-  const messageElements = messages.map((msg, idx) => (<div key={`message-${idx}`}>{msg}</div>));
-  console.log(messageElements);
+  // map each string in the messages array into a div element
+  // use a unique key to identify each of the elements
+  const messageElements = messages
+    .map(
+      (msg, idx) => (
+      <div key={`message-${idx}`}>
+        {msg}
+        </div>
+        )
+      );
 
   return (
     // fragment instead of wrapping in a div that we dont need
