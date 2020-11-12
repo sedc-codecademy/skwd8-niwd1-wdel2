@@ -6,8 +6,18 @@ export function App() {
 
   const { counter, decrementCounter, incrementCounter } = useCounter(5);
 
+  const messages = [];
+
   const divisibleByTen = (counter % 10) === 0;
-  const message = divisibleByTen ? (<div>Number is divisible by 10.</div>) : null;
+  const divisibleByFifteen = (counter % 15) === 0;
+  const divisibleByTwenty = (counter % 20) === 0;
+
+  if (divisibleByTen) messages.push('Counter is divisible by 10.');
+  if (divisibleByFifteen) messages.push('Counter is divisible by 15.');
+  if (divisibleByTwenty) messages.push('Counter is divisible by 20.');
+
+  const messageElements = messages.map((msg, idx) => (<div key={`message-${idx}`}>{msg}</div>));
+  console.log(messageElements);
 
   return (
     // fragment instead of wrapping in a div that we dont need
@@ -21,7 +31,7 @@ export function App() {
         isClicked={decrementCounter}>
         -
       </CustomButton>
-      {message}
+      {messageElements}
     </>
   );
 }
