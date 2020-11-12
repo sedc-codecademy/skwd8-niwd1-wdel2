@@ -2,6 +2,7 @@
 import React from 'react';
 // import the lib to render app to DOM
 import ReactDOM from 'react-dom';
+// import the index.css file
 import './index.css';
 // import the root component of our app
 import { App } from './App';
