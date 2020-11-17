@@ -19,6 +19,7 @@ export default function todosReducer(state = initialState, action) {
             ...state,
             list: newList,
         };
+        // NEVER FORGET TO RETURN A NEW OR EXISTING STATE FROM A REDUCER
         default: 
         return state;
     }
