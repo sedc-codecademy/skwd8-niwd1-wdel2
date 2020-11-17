@@ -1,6 +1,7 @@
 import TodoItem from './components/TodoItem';
 import TodoForm from './components/TodoForm';
 import { useSelector } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
 
 export default function App() {
   
@@ -15,10 +16,25 @@ export default function App() {
   return (
     <>
       <h1>Todo App</h1>
-      <div>
-        {todosItems}
-      </div>
-      <TodoForm/>
+
+      <Switch>
+
+        <Route path="/login">
+          Login form
+        </Route>
+
+        <Route path="/todos">
+          <div>
+            {todosItems}
+          </div>
+          <TodoForm/>
+        </Route>
+
+        <Route path="/">
+          Welcome!
+        </Route>
+
+      </Switch>
     </>
   );
 }
