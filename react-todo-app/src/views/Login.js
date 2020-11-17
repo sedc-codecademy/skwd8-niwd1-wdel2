@@ -1,8 +1,14 @@
 import { useState } from 'react';
 import MainLayout from './MainLayout';
 import { logIn } from '../actions/authActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 export default function Login() {
+    const dispatch = useDispatch();
+    const loggedIn = useSelector(state => state.auth.loggedIn);
+    const loginError = useSelector(state => state.auth.error);
+
     const [credentials, setCredentials] = useState({
         email: '',
         password: '',
@@ -24,8 +30,12 @@ export default function Login() {
 
     const loginHandler = () => {
         console.log('Current credentials', credentials);
-        logIn(credentials);
+        dispatch(logIn(credentials));
     };
+
+    if (loggedIn) {
+        return <Redirect to="/todos"/>
+    }
 
     return (
         <MainLayout title={'Login'}>
@@ -39,6 +49,10 @@ export default function Login() {
             </label>
 
             <button onClick={loginHandler}>Login</button>
+
+            <div>
+                { loginError }
+            </div>
         </MainLayout>
     );
 }
