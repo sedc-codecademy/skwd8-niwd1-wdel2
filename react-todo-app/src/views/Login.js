@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import MainLayout from './MainLayout';
+import { logIn } from '../actions/authActions';
 
 export default function Login() {
     const [credentials, setCredentials] = useState({
@@ -23,6 +24,7 @@ export default function Login() {
 
     const loginHandler = () => {
         console.log('Current credentials', credentials);
+        logIn(credentials);
     };
 
     return (
