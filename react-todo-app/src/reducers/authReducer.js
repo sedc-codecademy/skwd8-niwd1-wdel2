@@ -1,5 +1,5 @@
 const initialState = {
-    loggedIn: true,
+    loggedIn: false,
 };
 
 export default function authReducer(state = initialState, action) {

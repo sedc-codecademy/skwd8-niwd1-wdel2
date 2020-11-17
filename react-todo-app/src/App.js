@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import Login from './views/Login';
 
 export default function App() {
 
@@ -8,7 +9,7 @@ export default function App() {
   return (
     <Switch>
       <Route path="/login">
-        Login
+        <Login/>
       </Route>
       <Route path="/register">
         Register
