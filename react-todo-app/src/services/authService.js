@@ -7,6 +7,14 @@ async function postRequest(url, payload) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload),
+        credentials: 'include',
+    });
+}
+
+async function getRequest(url) {
+    return await fetch(`${config.API_URL}/${url}`, {
+        method: 'GET',
+        credentials: 'include',
     });
 }
 
@@ -29,6 +37,10 @@ class AuthService {
         else {
             throw new Error('Registration failed');
         }
+    }
+
+    async logout() {
+        await getRequest('logout');
     }
 }
 

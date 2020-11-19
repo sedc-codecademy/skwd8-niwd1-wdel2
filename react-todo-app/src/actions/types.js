@@ -2,3 +2,4 @@ export const LOG_IN = 'LOG_IN';
 export const LOG_IN_ERROR = 'LOG_IN_ERROR';
 export const REGISRATION_FAILED = 'REGISRATION_FAILED';
 export const REGISTRATION_SUCCESSFUL = 'REGISTRATION_SUCCESSFUL';
+export const LOGOUT = 'LOGOUT';

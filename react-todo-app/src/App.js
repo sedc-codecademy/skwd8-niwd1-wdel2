@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Login from './views/Login';
 import Register from './views/Register';
+import Todos from './views/Todos';
 
 export default function App() {
 
@@ -23,7 +24,7 @@ export default function App() {
       <Route path="/todos">
         {
           loggedIn
-          ? 'Todos!'
+          ? <Todos/>
           : <Redirect to="/login"/>
         }
       </Route>

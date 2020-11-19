@@ -41,7 +41,7 @@ authRouter.post('/login', async function(req, res){
         const token = await AuthService.generateToken(user);
         res.cookie(config.auth.authCookieName, token, {
             httpOnly: true,
-            expires: new Date(Date.now() + config.auth.authCookieAgeInSeconds * 1000)
+            expires: new Date(Date.now() + config.auth.authCookieAgeInSeconds * 1000),
         });
         res.sendStatus(200);
     } catch (e) {

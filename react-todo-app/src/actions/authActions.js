@@ -1,4 +1,4 @@
-import { LOG_IN, LOG_IN_ERROR, REGISRATION_FAILED, REGISTRATION_SUCCESSFUL } from './types';
+import { LOGOUT, LOG_IN, LOG_IN_ERROR, REGISRATION_FAILED, REGISTRATION_SUCCESSFUL } from './types';
 import authService from "../services/authService";
 
 export function logIn(credentials) {
@@ -31,5 +31,14 @@ export function register(payload) {
                 payload: 'Missing fields or duplicate email address.',
             })
         }
+    };
+}
+
+export function logout() {
+    return (dispatch) => {
+        authService.logout();
+        dispatch({
+            type: LOGOUT,
+        })
     };
 }
