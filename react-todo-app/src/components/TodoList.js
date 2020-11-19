@@ -7,7 +7,7 @@ export function TodoList(props) {
     return (
         <div>
             <h1>{list.title} - {list.lastModified}</h1>
-            {list.items.map(item => <TodoListItem item={item}/>)}
+            {list.items.map((item, index) => <TodoListItem item={item} key={index}/>)}
         </div>
     );
 }
