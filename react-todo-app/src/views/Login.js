@@ -21,7 +21,7 @@ export default function Login() {
     }
 
     return (
-        <MainLayout title={'Login'}>
+        <MainLayout title={'Login'} buttonText={'Registration'} path={'/register'}>
             <label>
                 <span>Email</span>
                 <input type="text" value={email} onChange={(e) => {setEmail(e.target.value)}} />

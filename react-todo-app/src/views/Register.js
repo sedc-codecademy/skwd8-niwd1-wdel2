@@ -24,7 +24,7 @@ export default function Register() {
     };
 
     return (
-        <MainLayout title={'Register'}>
+        <MainLayout title={'Register'} buttonText={'Login'} path={'/login'}>
             <label>
                 First name
                 <input type="text" value={firstName} onChange={(e) => { setFirstName(e.target.value) }}/>
