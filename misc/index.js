@@ -19,17 +19,28 @@ function Person(name, age) {
 
 // call-site of the function
 function printName() {
-    console.log('My name is', this.name);
+    console.log('(normal) My name is', this.name);
+}
+
+const printNameArrow = () => {
+    console.log('(arrow) My name is', this.name);
 }
 
 const trainer = {
     name: 'Aleksandar Bencun',
     age: 27,
     printName,
+    printNameArrow,
+    printNameArrowInner: () => {
+        console.log('(arrow inner) My name is', this.name);
+    }
 }
 
 //trainer.printName();
 //printName();
+trainer.printName();
+trainer.printNameArrow();
+trainer.printNameArrowInner();
 
 // binding a function with call()
 const myObj = {message: 'Hello this!!!'};
