@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createTodo } from "../actions/todosActions";
 
 export function TodoForm() {
-
+    const dispatch = useDispatch();
     const [title, setTitle] = useState('');
     const [items, setItems] = useState([]);
 
@@ -17,6 +19,14 @@ export function TodoForm() {
         setItems([...items]);
     };
 
+    const saveHandler = () => {
+        const listPayload = {
+            title,
+            items,
+        };
+        dispatch(createTodo(listPayload));
+    };
+
     return (
         <div>
             <label>
@@ -30,8 +40,8 @@ export function TodoForm() {
                     <input type="text" value={item.text} onChange={ (e) => { handleItemChange(item, e.target.value) }}/>
                 </div>
             )}
-            
 
+            <button onClick={saveHandler}>Save</button>
 
         </div>
     );

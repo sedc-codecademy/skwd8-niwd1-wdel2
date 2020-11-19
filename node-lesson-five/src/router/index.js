@@ -9,7 +9,8 @@ const mainRouter = Router();
 mainRouter.use(cors({
     // essential to allow CORS cookies to flow
     credentials: true,
-    preflightContinue: true,
+    // do not preflightContinue to allow OPTIONS request with no cookies
+    // preflightContinue: true,
     // essential to provide because of browser security limitations
     origin: 'http://my.app.test:3000',
 }));

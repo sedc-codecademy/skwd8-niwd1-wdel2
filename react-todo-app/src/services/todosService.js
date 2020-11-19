@@ -10,6 +10,16 @@ class TodosService {
             throw new Error('Fetching todos failed.');
         }
     }
+
+    async createTodo(payload) {
+        const result = await FetchService.postRequest('todos', payload);
+        if (result.ok) {
+            return true;
+        }
+        else {
+            throw new Error('Creating todo failed');
+        }
+    }
 }
 
 export default new TodosService();

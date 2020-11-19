@@ -14,3 +14,14 @@ export function getAllTodos() {
         }
     }
 }
+
+export function createTodo(payload) {
+    return async (dispatch) => {
+        try {
+            await todosService.createTodo(payload);
+            await getAllTodos()(dispatch);
+        } catch (e) {
+            
+        }
+    }
+}

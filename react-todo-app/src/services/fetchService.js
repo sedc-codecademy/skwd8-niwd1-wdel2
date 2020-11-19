@@ -18,6 +18,17 @@ class FetchService {
             credentials: 'include',
         });
     }
+
+    static async putRequest(url, payload) {
+        return await fetch(`${config.API_URL}/${url}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload),
+            credentials: 'include',
+        });
+    }
 }
 
 export { FetchService };
