@@ -1,7 +1,8 @@
-import { LOG_IN, LOG_IN_ERROR } from "../actions/types";
+import { LOG_IN, LOG_IN_ERROR, REGISRATION_FAILED, REGISTRATION_SUCCESSFUL } from "../actions/types";
 
 const initialState = {
     loggedIn: false,
+    registrationStatus: false,
     error: null,
 };
 
@@ -19,6 +20,19 @@ export default function authReducer(state = initialState, action) {
                 loggedIn: false,
                 error: action.payload,
             }
+        case REGISRATION_FAILED: {
+            return {
+                ...state,
+                error: action.payload
+            };
+        }
+        case REGISTRATION_SUCCESSFUL: {
+            return {
+                ...state,
+                registrationStatus: true,
+                error: null,
+            };
+        }
         default:
             return state;
     }
