@@ -16,6 +16,7 @@ export default function authReducer(state = initialState, action) {
         case LOG_IN_ERROR:
             return {
                 ...state,
+                loggedIn: false,
                 error: action.payload,
             }
         default:
